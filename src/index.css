@@ -1,0 +1,219 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Cormorant+Infant:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-cream: #F9F6F1;
+  --color-warm-white: #FDFAF5;
+  --color-charcoal: #1C1C1A;
+  --color-ink: #2A2825;
+  --color-terracotta: #B85C38;
+  --color-clay: #C4704A;
+  --color-dusty-rose: #D4A090;
+  --color-sage: #7A8C6E;
+  --color-sand: #D6C5A8;
+  --color-muted: #8A8279;
+  --color-rule: #D8D0C4;
+
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-serif2: 'Cormorant Infant', Georgia, serif;
+  --font-sans: 'Jost', system-ui, sans-serif;
+}
+
+/* backward-compat aliases used in the few remaining gradient inline styles */
+:root {
+  --cream: var(--color-cream);
+  --warm-white: var(--color-warm-white);
+  --charcoal: var(--color-charcoal);
+  --ink: var(--color-ink);
+  --terracotta: var(--color-terracotta);
+  --sand: var(--color-sand);
+  --muted: var(--color-muted);
+  --rule: var(--color-rule);
+  --serif: var(--font-serif);
+  --sans: var(--font-sans);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes slideLine {
+  to { left: 100%; }
+}
+
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--color-warm-white);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 1.7;
+    cursor: default;
+    overflow-x: hidden;
+  }
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--color-cream); }
+  ::-webkit-scrollbar-thumb { background: var(--color-sand); }
+}
+
+@layer components {
+  .fade-in { animation: fadeIn 0.6s ease; }
+
+  /* ── Typography helpers ─────────────────────────────────────────── */
+  .display-title {
+    font-family: var(--font-serif);
+    font-size: clamp(60px, 8vw, 120px);
+    font-weight: 300;
+    font-style: italic;
+    line-height: 0.92;
+    color: var(--color-ink);
+    letter-spacing: -0.02em;
+  }
+  .display-title span { font-style: normal; font-weight: 500; }
+
+  .section-label {
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+
+  /* ── Scroll indicator ───────────────────────────────────────────── */
+  .scroll-line {
+    width: 40px;
+    height: 1px;
+    background: var(--color-sand);
+    display: block;
+    position: relative;
+    overflow: hidden;
+  }
+  .scroll-line::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 1px;
+    background: var(--color-terracotta);
+    animation: slideLine 2s ease infinite;
+  }
+
+  /* ── Homepage project grid ──────────────────────────────────────── */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 24px;
+    align-items: start;
+  }
+  .proj-card-a { grid-column: 1 / 5; }
+  .proj-card-b { grid-column: 5 / 9; margin-top: 80px; }
+  .proj-card-c { grid-column: 9 / 13; }
+  .proj-card-more {
+    grid-column: 1 / 13;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 0 0;
+  }
+
+  /* ── Lookbook grid ──────────────────────────────────────────────── */
+  .lookbook-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3px;
+  }
+  .lookbook-grid .lookbook-wide { grid-column: 1 / -1; }
+  .lookbook-grid img { width: 100%; object-fit: cover; display: block; }
+
+  /* ── Process grid ───────────────────────────────────────────────── */
+  .process-imgs {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+
+  /* ── Outcome / lookbook grid ────────────────────────────────────── */
+  .outcome-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  /* ── Project concept section ────────────────────────────────────── */
+  .proj-section-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+  .proj-section-inner.wide  { grid-template-columns: 4fr 6fr; }
+  .proj-section-inner.single { grid-template-columns: 1fr; max-width: 680px; }
+
+  /* ── All-projects card grid ────────────────────────────────────── */
+  .all-projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 36px;
+    align-items: start;
+  }
+  .all-projects-grid > *:nth-child(3n+2) { margin-top: 80px; }
+
+  /* ── Project list row ───────────────────────────────────────────── */
+  .project-row {
+    display: grid;
+    grid-template-columns: 80px 1fr 280px 100px;
+    align-items: center;
+    gap: 40px;
+    padding: 36px 0;
+    border-bottom: 1px solid var(--color-rule);
+    cursor: pointer;
+    transition: background 0.2s, padding 0.2s, margin 0.2s;
+  }
+  .project-row:hover {
+    background: var(--color-cream);
+    margin: 0 -20px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .project-row:hover .proj-row-arrow {
+    transform: translateX(8px);
+    opacity: 1 !important;
+  }
+  .project-row .thumb-img { transition: transform 0.4s; }
+  .project-row:hover .thumb-img { transform: scale(1.08); }
+
+  /* ── Responsive ─────────────────────────────────────────────────── */
+  @media (max-width: 900px) {
+    .hero-grid               { grid-template-columns: 1fr !important; height: auto !important; }
+    .hero-right-mobile       { height: auto; max-height: 70vw; overflow: hidden; }
+    .about-hero              { grid-template-columns: 1fr !important; }
+    .about-img-col-mobile    { height: 60vw; }
+    .about-text-col          { padding: 48px 24px !important; }
+    .contact-grid            { grid-template-columns: 1fr !important; padding: 60px 24px !important; }
+    .projects-hero-header-inner { flex-direction: column; align-items: flex-start !important; }
+    .projects-list-wrap      { padding: 0 24px 80px !important; }
+    .project-row             { grid-template-columns: 50px 1fr 120px 40px; gap: 20px; }
+    .proj-section-inner,
+    .proj-section-inner.wide { grid-template-columns: 1fr !important; gap: 40px; }
+    .proj-detail-content-mobile { flex-direction: column; gap: 20px; align-items: flex-start !important; }
+    .process-imgs            { grid-template-columns: repeat(2, 1fr); }
+    .lookbook-grid img       { height: 280px !important; }
+    .process-imgs            { grid-template-columns: repeat(2, 1fr); }
+    .outcome-grid            { grid-template-columns: repeat(2, 1fr); }
+    .projects-grid           { display: block; }
+    .proj-card-b             { margin-top: 0 !important; }
+    .all-projects-grid       { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    .all-projects-grid > *:nth-child(3n+2) { margin-top: 0; }
+    .projects-preview        { padding: 60px 24px !important; }
+  }
+
+  @media (max-width: 540px) {
+    .all-projects-grid       { grid-template-columns: 1fr; gap: 48px; }
+    .process-imgs            { grid-template-columns: 1fr; }
+    .outcome-grid            { grid-template-columns: 1fr; }
+  }
+}
