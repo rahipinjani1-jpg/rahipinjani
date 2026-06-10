@@ -5,20 +5,26 @@ import About from './pages/About.jsx';
 import Projects from './pages/Projects.jsx';
 import ProjectDetail from './pages/ProjectDetail.jsx';
 
-function parseHash() {
-  const hash = window.location.hash.slice(1);
-  if (!hash || hash === 'home') return { page: 'home', project: null };
-  if (hash === 'about') return { page: 'about', project: null };
-  if (hash === 'projects') return { page: 'projects', project: null };
-  if (hash.startsWith('project/')) {
-    const slug = hash.slice(8);
+function parsePath() {
+  const path = window.location.pathname;
+  if (path === '/' || path === '/home') return { page: 'home', project: null };
+  if (path === '/about') return { page: 'about', project: null };
+  if (path === '/work') return { page: 'projects', project: null };
+  if (path.startsWith('/project/')) {
+    const slug = path.slice(9);
     return { page: 'project-' + slug, project: slug };
   }
   return { page: 'home', project: null };
 }
 
+function toPath(page) {
+  if (page === 'home') return '/';
+  if (page === 'projects') return '/work';
+  return '/' + page;
+}
+
 export default function App() {
-  const { page: initPage, project: initProject } = parseHash();
+  const { page: initPage, project: initProject } = parsePath();
   const [currentPage, setCurrentPage] = useState(initPage);
   const [currentProject, setCurrentProject] = useState(initProject);
 
@@ -34,7 +40,7 @@ export default function App() {
 
   useEffect(() => {
     const onPopState = () => {
-      const { page, project } = parseHash();
+      const { page, project } = parsePath();
       setCurrentPage(page);
       setCurrentProject(project);
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -44,21 +50,21 @@ export default function App() {
   }, []);
 
   const navigate = (page) => {
-    history.pushState(null, '', '#' + page);
+    history.pushState(null, '', toPath(page));
     setCurrentPage(page);
     setCurrentProject(null);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const showProject = (slug) => {
-    history.pushState(null, '', '#project/' + slug);
+    history.pushState(null, '', '/project/' + slug);
     setCurrentProject(slug);
     setCurrentPage('project-' + slug);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const goBackToProjects = () => {
-    history.pushState(null, '', '#projects');
+    history.pushState(null, '', '/work');
     setCurrentProject(null);
     setCurrentPage('projects');
     window.scrollTo({ top: 0, behavior: 'smooth' });

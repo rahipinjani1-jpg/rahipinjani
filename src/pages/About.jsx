@@ -87,9 +87,9 @@ export default function About() {
             honesty.
             <br />
             <br />
-            Her work draws heavily from the Indian textile tradition —
-            block-printed cottons, kantha fabrics, organic forms — and
-            reinterprets these through a contemporary lens. Whether repurposing
+            Her work draws heavily from the Indian textile tradition:
+            block-printed cottons, kantha fabrics, organic forms, all
+            reinterpreted through a contemporary lens. Whether repurposing
             leftover fabric into architectural soft furnishings, sculpting
             silver-tone wire into wearable forms, or painting botanicals
             directly onto handmade tops, Rahi's designs are always process-led
