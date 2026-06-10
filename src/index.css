@@ -51,7 +51,7 @@
     font-weight: 300;
     font-size: 15px;
     line-height: 1.7;
-    cursor: default;
+    cursor: auto;
     overflow-x: hidden;
   }
   ::-webkit-scrollbar { width: 4px; }

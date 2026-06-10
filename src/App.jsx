@@ -5,6 +5,24 @@ import About from './pages/About.jsx';
 import Projects from './pages/Projects.jsx';
 import ProjectDetail from './pages/ProjectDetail.jsx';
 
+const PAGE_TITLES = {
+  home:     'Rahi Pinjani - Fashion Designer | Mumbai',
+  about:    'About Rahi Pinjani - Fashion Designer | Mumbai',
+  projects: 'Work - Rahi Pinjani | Fashion Designer',
+};
+
+const PROJECT_NAMES = {
+  patchwork: 'Kathedar',
+  wire:      'Taar',
+  tulip:     'Khilna',
+  kurti:     'Gulab',
+  lehenga:   'Reshmi',
+  velvet:    'Raat',
+  navratri:  'Navrang',
+  suit:      'Misty Rose',
+  khushi:    'Khushi',
+};
+
 function parsePath() {
   const path = window.location.pathname;
   if (path === '/' || path === '/home') return { page: 'home', project: null };
@@ -27,6 +45,15 @@ export default function App() {
   const { page: initPage, project: initProject } = parsePath();
   const [currentPage, setCurrentPage] = useState(initPage);
   const [currentProject, setCurrentProject] = useState(initProject);
+
+  useEffect(() => {
+    if (currentProject) {
+      const name = PROJECT_NAMES[currentProject] || currentProject;
+      document.title = `${name} - Rahi Pinjani | Fashion Designer`;
+    } else {
+      document.title = PAGE_TITLES[currentPage] || 'Rahi Pinjani - Fashion Designer';
+    }
+  }, [currentPage, currentProject]);
 
   // Load Instagram embed.js once per hard load — never again on SPA navigation
   useEffect(() => {
