@@ -1,6 +1,7 @@
 import React from "react";
 import Footer from "../components/Footer.jsx";
 import { projects } from "../data/projects.js";
+import { prefetchProject } from "../utils/prefetch.js";
 
 const previewImgs = {
   patchwork: "/images/patchwork/thumbnail.png",
@@ -33,7 +34,7 @@ export default function Home({ onNav, onProject }) {
           </h1>
           <p className="text-center text-sm font-light leading-[1.9] text-muted max-w-120 mb-8 md:mb-8">
             Crafting wearable stories from discarded cloth, bent wire, and
-            hand-applied paint. A designer who thinks with her hands — and
+            hand-applied paint. A designer who thinks with her hands, and
             finishes with intention.
           </p>
           <img
@@ -88,6 +89,7 @@ export default function Home({ onNav, onProject }) {
             <div
               key={p.slug}
               className={`proj-card-${["a", "b", "c"][i]} cursor-pointer overflow-hidden relative group pb-12 md:pb-0`}
+              onMouseEnter={() => prefetchProject(p.images)}
               onClick={() => onProject(p.slug)}
             >
               <div className="overflow-hidden">
@@ -99,7 +101,7 @@ export default function Home({ onNav, onProject }) {
               </div>
               <div className="pt-5 pb-2">
                 <p className="text-[10px] tracking-[0.22em] text-terracotta uppercase">
-                  {p.num} — {p.label.split("·")[0].trim()}
+                  {p.num} · {p.label.split("·")[0].trim()}
                 </p>
                 <p className="font-serif text-[22px] font-normal italic text-ink my-1">
                   {p.name}

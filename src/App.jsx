@@ -22,6 +22,16 @@ export default function App() {
   const [currentPage, setCurrentPage] = useState(initPage);
   const [currentProject, setCurrentProject] = useState(initProject);
 
+  // Load Instagram embed.js once per hard load — never again on SPA navigation
+  useEffect(() => {
+    if (!document.querySelector('script[src="https://www.instagram.com/embed.js"]')) {
+      const script = document.createElement('script');
+      script.src = 'https://www.instagram.com/embed.js';
+      script.async = true;
+      document.body.appendChild(script);
+    }
+  }, []);
+
   useEffect(() => {
     const onPopState = () => {
       const { page, project } = parseHash();

@@ -5,7 +5,7 @@ export default function Footer({ copy = "Mumbai, India" }) {
         Rahi Pinjani
       </span>
       <span className="text-[11px] tracking-widest text-muted">
-        © 2025 — {copy}
+        © 2025 · {copy}
       </span>
     </footer>
   );

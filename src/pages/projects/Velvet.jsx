@@ -89,7 +89,7 @@ export default function Velvet({ onBack }) {
       {/* ACT I — THE LEHENGA */}
       <div className="px-8 md:px-15 py-14 md:py-20">
         <span className="text-[10px] tracking-[0.26em] uppercase text-terracotta block mb-10">
-          Act I — The Lehenga
+          Act I: The Lehenga
         </span>
         <div className="outcome-grid">
           <img
@@ -113,7 +113,7 @@ export default function Velvet({ onBack }) {
       {/* ACT II — THE SAREE */}
       <div className="px-8 md:px-15 py-14 md:py-20 bg-charcoal">
         <span className="text-[10px] tracking-[0.26em] uppercase text-white/45 block mb-10">
-          Act II — The Saree (Same Blouse, New Life)
+          Act II: The Saree (Same Blouse, New Life)
         </span>
         <div className="outcome-grid">
           <img

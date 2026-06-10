@@ -17,13 +17,9 @@ export default function About() {
   const activeArtwork = activeIndex !== null ? artworks[activeIndex] : null;
 
   useEffect(() => {
+    // Script is loaded at app level; just process any new blockquotes on mount
     if (window.instgrm) {
       window.instgrm.Embeds.process();
-    } else {
-      const script = document.createElement("script");
-      script.src = "https://www.instagram.com/embed.js";
-      script.async = true;
-      document.body.appendChild(script);
     }
   }, []);
 
@@ -85,7 +81,7 @@ export default function About() {
             Rahi Pinjani is a Mumbai-based fashion designer whose practice sits
             at the intersection of intuitive making and thoughtful craft. An MBA
             graduate in Marketing who followed a deeper calling, she approached
-            fashion design not through convention, but through curiosity —
+            fashion design not through convention, but through curiosity,
             learning directly at the machine, stitching garments by hand from
             reference, and building a design language rooted in material
             honesty.
@@ -179,13 +175,13 @@ export default function About() {
           </a>
         </div>
 
-        <div className="-mx-8 md:mx-0 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 items-start">
           {[
             "https://www.instagram.com/p/DJ9SNjxTXTQ/",
             "https://www.instagram.com/p/DQRUGsaDOV0/",
             "https://www.instagram.com/p/DW5r5qTDGi8/",
           ].map((permalink) => (
-            <div key={permalink} className="min-w-0">
+            <div key={permalink} className="min-w-0 overflow-hidden">
               <blockquote
                 className="instagram-media"
                 data-instgrm-captioned
